@@ -1,0 +1,9 @@
+# Ignore everything
+/*
+
+# Then choose, what to include
+!.gitignore
+!/nvim/
+!/sway/
+!/wofi/
+!/alacritty/
