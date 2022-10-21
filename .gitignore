@@ -8,3 +8,9 @@
 !/wofi/
 !/alacritty/
 !/waybar/
+
+!/Code - OSS/
+/Code - OSS/**
+!/Code - OSS/User/
+!/Code - OSS/User/settings.json
+!/Code - OSS/User/keybindings.json

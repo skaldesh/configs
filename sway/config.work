@@ -157,8 +157,8 @@ output * bg /home/skaldesh/pictures/wallpapers/minimalist_mountain_moon.jpg fill
     input "type:keyboard" {
         repeat_delay 150
 	    repeat_rate 38
-        xkb_layout de,us
-        xkb_variant neo,
+        xkb_layout us,de
+        xkb_variant ,neo
         xkb_options grp:ctrls_toggle
     }
 

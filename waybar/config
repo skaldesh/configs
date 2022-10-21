@@ -98,7 +98,7 @@
 
 	"cpu": {
 		"interval": 2,
-		"format": " {usage:02}% {avg_frequency}GHz"
+		"format": " {usage:02}% {max_frequency}GHz"
 	},
 
 	"temperature#cpu": {

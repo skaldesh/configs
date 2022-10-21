@@ -3,7 +3,7 @@ wk.setup {}
 
 -- Register key mappings/documentations
 mappings = {}
--- Code
+-- Code (any LSP)
 mappings.c = { -- under common base key c
     name = "Code", -- group name
     c = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Jump Declaration" },

@@ -3,11 +3,12 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin(stdpath('data') . '/plugged')
 
-" LSP (Go)
+" LSP
 Plug 'neovim/nvim-lspconfig'
 
 " Deoplete, for asynchronous code completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 
 " NERDTree, as project explorer
 Plug 'preservim/nerdtree'
@@ -49,6 +50,8 @@ set expandtab
 set splitright
 set splitbelow
 set timeoutlen=500
+set completeopt+=noinsert
+set completeopt+=noselect
 
 " change the leader key from "\" to " "
 let mapleader=","
@@ -60,6 +63,12 @@ let NERDTreeShowHidden=1
 "" Deoplete / Deoplete-go
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#go#use_cache = 1
+let g:deoplete#sources#go#gocode_binary = $GOBIN.'/gocode'
+let g:deoplete#sources#go#pointer = 1
+"let g:deoplete#sources#go#cgo = 1
+let g:deoplete#sources#go#builtin_objects = 1
+let g:deoplete#sources#go#unimported_packages = 1
+let g:deoplete#sources#go#fallback_to_source = 1
 
 "" fzf
 let g:fzf_command_prefix = 'Fzf'

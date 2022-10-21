@@ -32,6 +32,7 @@ require 'go'.setup({
     goimport = 'gopls',
     gofmt = 'gofumpt',
     max_line_len = 140,
+    comment_placeholder = '',
     tag_transform =false,
     lsp_cfg = true,
     lsp_on_attach = require("lsp_on_attach"),
