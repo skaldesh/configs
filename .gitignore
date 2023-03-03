@@ -5,6 +5,7 @@
 !.gitignore
 !/nvim/
 !/sway/
+/sway/config.*
 !/wofi/
 !/alacritty/
 !/waybar/

@@ -5,13 +5,22 @@
 	font-family: monospace;
 }
 
+/* Workaround for https://github.com/Alexays/Waybar/issues/1741 */
+button {
+  all: unset;
+}
+label {
+  all: unset;
+}
+/* Workaround end */
+
 window.eDP-1 * {
 	font-size: 14px;
 }
 
 window#waybar {
 	color: #ffffff;
-        background: linear-gradient(0deg, rgba(20,20,20,0.2) 0%, rgba(20,20,20,0.3) 100%); 
+    background: linear-gradient(0deg, rgba(20,20,20,0.2) 0%, rgba(20,20,20,0.3) 100%); 
 }
 
 #clock { background: #76604b; }
@@ -42,7 +51,7 @@ window#waybar {
 #workspaces button {
 	background: rgba(0, 0, 0, 0.2);
 	color: #ffffff;
-	padding: 0 6px;
+	padding: 4px 10px;
 	border-radius: 0;
 	font-weight: bold;
 }
@@ -78,4 +87,10 @@ window#waybar {
 #cpu, #temperature, #battery, #disk {
 	padding: 0 10px;
 	margin: 1px 2px;
+}
+
+#custom-recorder {
+	padding: 0 10px;
+	color: white;
+	background: red
 }

@@ -4,9 +4,9 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-#
-# Autostart
-#
+#################
+### Autostart ###
+#################
 
 ### Set GTK Theme
 set $gnome-schema org.gnome.desktop.interface
@@ -28,9 +28,11 @@ exec_always {
 ### Needed for xdg-deskop-portal-wlr
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-#
-# Variables
-#
+
+
+#################
+### Variables ###
+#################
 
 ### Colors
 set $colPrim "#a81800"
@@ -85,7 +87,7 @@ set $decLapBright light -U 5
 set $dlap eDP-1
 
 ### External Display HDMI Identifier
-set $dext DP-2
+set $dext DP-3
 
 ### Swaylock
 set $swaylock swaylock \
@@ -96,9 +98,11 @@ set $swaylock swaylock \
 	--show-keyboard-layout \
 	--indicator-caps-lock
 
-#
-# Default Settings
-#
+
+
+########################
+### Default Settings ###
+########################
  
 ### Give each window a border
 default_border pixel 3
@@ -116,9 +120,12 @@ client.focused_inactive #333333 #5f676a #ffffff #484e50 #000000
 bindswitch --locked lid:on output $dlap disable
 bindswitch --locked lid:off output $dlap enable
 
-#
-# Output configuration
-#
+
+
+############################
+### Output configuration ###
+############################
+
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -128,19 +135,19 @@ bindswitch --locked lid:off output $dlap enable
 ### Default wallpaper (more res in /usr/share/backgrounds/sway/)
 output * bg /home/skaldesh/pictures/wallpapers/minimalist_mountain_moon.jpg fill
 	
-    ### Laptop Display
-    ### Not at (0,0), so that external display can be to its top or left
-    output $dlap position 1920 1080 mode 1920x1080@60Hz scale 1
+### Laptop Display
+### Not at (0,0), so that external display can be to its top or left
+output $dlap position 1920 1080 mode 1920x1080@60Hz scale 1
 	
-    ### External Display (USB-C)
-    output $dext scale 1
+### External Display (USB-C)
+output $dext scale 1
 
-    ### External Display (HDMI)
-    output HDMI-A-1 scale 1
 
-#
-# Input configuration
-#
+
+###########################
+### Input configuration ###
+###########################
+
 # Example configuration:
 #
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
@@ -153,38 +160,30 @@ output * bg /home/skaldesh/pictures/wallpapers/minimalist_mountain_moon.jpg fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-    ### Keyboard layout.
-    input "type:keyboard" {
-        repeat_delay 150
-	    repeat_rate 38
-        xkb_layout de,us
-        xkb_variant neo,
-        xkb_options grp:ctrls_toggle
-    }
+### Keyboard layout.
+input "type:keyboard" {
+    repeat_delay 150
+    repeat_rate 38
+    xkb_layout us,de
+    xkb_variant ,neo
+    xkb_options grp:ctrls_toggle
+}
 
-    ### All mouse-like devices.
-    input "type:pointer" {
-        scroll_factor 2
-    }
+### All mouse-like devices.
+input "type:pointer" {
+    scroll_factor 2
+}
 
-    ### Laptop Keyboard
-    # input "1:1:AT_Translated_Set_2_keyboard" {
-    #     repeat_delay 150
-    #     repeat_rate 35
-    # }
-	
-    ### Laptop Trackpoint
-    input "2:10:TPPS/2_Elan_TrackPoint" {
-        pointer_accel -0.5
-        natural_scroll disabled
-    }
-	
-    ### UHK Keyboard
-    # input "7504:24866:Ultimate_Gadget_Laboratories_Ultimate_Hacking_Keyboard" {
-    #     repeat_delay 150
-    #     repeat_rate 35
-    # }
-
+### Laptop Keyboard
+# input "1:1:AT_Translated_Set_2_keyboard" {
+#     repeat_delay 150
+#     repeat_rate 35
+# }
+### Laptop Trackpoint
+input "2:10:TPPS/2_Elan_TrackPoint" {
+    pointer_accel -0.5
+    natural_scroll disabled
+}
 
 ### Idle configuration
 #
@@ -200,159 +199,174 @@ output * bg /home/skaldesh/pictures/wallpapers/minimalist_mountain_moon.jpg fill
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### Key bindings
-#
-# Basics:
-#
-    # start a terminal
-    bindsym $mod+Return exec $term
 
-    # kill focused window
-    bindsym $mod+Shift+q kill
 
-    # start your launcher
-    bindsym $mod+d exec $menu
+##############
+### Basics ###
+##############
 
-    # lock the screen and start swayidle to turn displays off after 5 seconds.
-    # swayidle is automatically killed, once unlocked.
-    bindsym $mod+Ctrl+l exec "$(swayidle -w timeout 10 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' & $swaylock ; pkill swayidle)"
+# start a terminal
+bindsym $mod+Return exec $term
 
-    # toggle mute output volume
-    bindsym XF86AudioMute exec $toggleMuteOutVol
-    # raise output volume
-    bindsym XF86AudioRaiseVolume exec $raiseOutVol
-    # lower output volume
-    bindsym XF86AudioLowerVolume exec $lowerOutVol
-    # toggle mute input volume
-    bindsym XF86AudioMicMute exec $toggleMuteInVol
-    bindsym --release XF86AudioPlay exec $toggleMuteInVol
-    # raise input volume
-    bindsym --release XF86AudioNext exec $raiseInVol
-    # lower input volume
-    bindsym --release XF86AudioPrev exec $lowerInVol
-    # increase laptop screen brightness
-    bindsym XF86MonBrightnessUp exec $incLapBright
-    # decrease laptop screen brightness
-    bindsym XF86MonBrightnessDown exec $decLapBright
-    # toggle bluetooth
-    #bindsym XF86Bluetooth exec $toggleBluetooth
+# kill focused window
+bindsym $mod+Shift+q kill
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+# start your launcher
+bindsym $mod+d exec $menu
 
-    # reload the configuration file
-    bindsym $mod+Shift+d reload
+# lock the screen and start swayidle to turn displays off after 5 seconds.
+# swayidle is automatically killed, once unlocked.
+bindsym $mod+Ctrl+l exec "$(swayidle -w timeout 10 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' & $swaylock ; pkill swayidle)"
 
-    # exit sway (logs you out of your wayland session)
-    bindsym $mod+Shift+e exit
+# toggle mute output volume
+bindsym XF86AudioMute exec $toggleMuteOutVol
+# raise output volume
+bindsym XF86AudioRaiseVolume exec $raiseOutVol
+# lower output volume
+bindsym XF86AudioLowerVolume exec $lowerOutVol
+# toggle mute input volume
+bindsym XF86AudioMicMute exec $toggleMuteInVol
+bindsym --release XF86AudioPlay exec $toggleMuteInVol
+# raise input volume
+bindsym --release XF86AudioNext exec $raiseInVol
+# lower input volume
+bindsym --release XF86AudioPrev exec $lowerInVol
+# increase laptop screen brightness
+bindsym XF86MonBrightnessUp exec $incLapBright
+# decrease laptop screen brightness
+bindsym XF86MonBrightnessDown exec $decLapBright
+# toggle bluetooth
+#bindsym XF86Bluetooth exec $toggleBluetooth
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# reload the configuration file
+bindsym $mod+Shift+d reload
+
+# exit sway (logs you out of your wayland session)
+bindsym $mod+Shift+e exit
+
+
     
-#
-# Moving around:
-#
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+#####################
+### Moving around ###
+#####################
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
     
-#
-# Workspaces:
-#
-    # switch to workspace
-    bindsym $mod+x  workspace 1
-    bindsym $mod+v  workspace 2
-    bindsym $mod+l  workspace 3
-    bindsym $mod+c  workspace 4
-    bindsym $mod+w  workspace 5
-    bindsym $mod+F6 workspace 6
-    bindsym $mod+F5 workspace 7
-    bindsym $mod+F4 workspace 8
-    # move focused container to workspace
-    bindsym $mod+Shift+x  move container to workspace 1
-    bindsym $mod+Shift+v  move container to workspace 2
-    bindsym $mod+Shift+l  move container to workspace 3
-    bindsym $mod+Shift+c  move container to workspace 4
-    bindsym $mod+Shift+w  move container to workspace 5
-    bindsym $mod+Shift+F6 move container to workspace 6
-    bindsym $mod+Shift+F5 move container to workspace 7
-    bindsym $mod+Shift+F4 move container to workspace 8
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+##################
+### Workspaces ###
+##################
+
+# switch to workspace
+bindsym $mod+x  workspace 1
+bindsym $mod+v  workspace 2
+bindsym $mod+l  workspace 3
+bindsym $mod+c  workspace 4
+bindsym $mod+w  workspace 5
+bindsym $mod+F6 workspace 6
+bindsym $mod+F5 workspace 7
+bindsym $mod+F4 workspace 8
+# move focused container to workspace
+bindsym $mod+Shift+x  move container to workspace 1
+bindsym $mod+Shift+v  move container to workspace 2
+bindsym $mod+Shift+l  move container to workspace 3
+bindsym $mod+Shift+c  move container to workspace 4
+bindsym $mod+Shift+w  move container to workspace 5
+bindsym $mod+Shift+F6 move container to workspace 6
+bindsym $mod+Shift+F5 move container to workspace 7
+bindsym $mod+Shift+F4 move container to workspace 8
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+
+
     
-#
-# Layout stuff:
-#
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splitt
+####################
+### Layout stuff ###
+####################
 
-    # Switch the current container between different layout styles
-    #bindsym $mod+s layout stacking
-    bindsym $mod+y layout tabbed
-    bindsym $mod+e layout default
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splitt
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+# Switch the current container between different layout styles
+#bindsym $mod+s layout stacking
+bindsym $mod+y layout tabbed
+bindsym $mod+e layout default
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
 
-    # Toggle the current view between floating and tiled
-    bindsym $mod+o floating toggle
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
 
-    # move focus to the parent container
-    bindsym $mod+a focus parent
+# Toggle the current view between floating and tiled
+bindsym $mod+o floating toggle
+
+# move focus to the parent container
+bindsym $mod+a focus parent
+
+
     
-#
-# Scratchpad:
-#
+##################
+### Scratchpad ###
+##################
 
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+k move scratchpad
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+k move scratchpad
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+k scratchpad show
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+k scratchpad show
+
+
     
-#
-# Resizing containers:
-#
+###########################
+### Resizing containers ###
+###########################
 
-    mode "resize" {
+mode "resize" {
 	# left will shrink the containers width
 	# right will grow the containers width
 	# up will shrink the containers height
 	# down will grow the containers height
-        bindsym $up    resize shrink height 10 px or 10 ppt
-        bindsym $right resize grow   width  10 px or 10 ppt
+    bindsym $up    resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow   width  10 px or 10 ppt
 	bindsym $down  resize grow   height 10 px or 10 ppt
 	bindsym $left  resize shrink width  10 px or 10 ppt
 
 	# return to default mode
 	bindsym Backspace mode "default"
-    }
-    bindsym $mod+i mode "resize"
+}
+bindsym $mod+i mode "resize"
 
-#
-# Displays:
-#
 
-    set $display ""
-    mode "display" {
+
+################
+### Displays ###
+################
+
+set $display ""
+mode "display" {
 	# select display
 	bindsym 1 set $$display $dlap
 	bindsym 2 set $$display $dext
@@ -364,43 +378,62 @@ output * bg /home/skaldesh/pictures/wallpapers/minimalist_mountain_moon.jpg fill
 	bindsym $left  output $$display position 0    1080
 
 	# enable or disable the display
-    	bindsym c output $$display enable
-    	bindsym v output $$display disable
+    bindsym c output $$display enable
+    bindsym v output $$display disable
 
 	# move workspace to the display
 	bindsym l move workspace output $$display 
 
 	# return to default mode
 	bindsym Backspace mode "default"
-    }
-    bindsym $mod+m mode "display"
+}
+bindsym $mod+m mode "display"
 
-#
-# Screenshot:
-#
 
-    mode "screenshot" {
-        # select area for the screenshot and save it to the screenshots dir
-        bindsym --release l exec grim -g \"$(slurp)" ~/pictures/screenshots/$(date +'%Y-%m-%d-%H%M%S.png')
+
+##################
+### Screenshot ###
+##################
+
+mode "screencapture" {
+    set $screenrecorder "toggle-screen-recorder"
+
+    # select area for the screenshot and save it to the screenshots dir
+    bindsym --release l exec grim -g \"$(slurp)" ~/pictures/screenshots/$(date +'%Y-%m-%d-%H%M%S.png')
 
 	# select area for the screenshot and save it to the clipboard
-        bindsym c exec grim -g \"$(slurp)" - | wl-copy
+    bindsym c exec grim -g \"$(slurp)" - | wl-copy
 
 	# take a screenshot of the current display
 	bindsym --release v exec "grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') /home/skaldesh/pictures/screenshots/$(date +'%Y-%m-%d-%H%M%S.png')"
 
-        # return to default mode
-        bindsym Backspace mode "default"
-    }
-    bindsym $mod+s mode "screenshot"
+	# take screen recording of the current display
+	bindsym --release h exec $screenrecorder
 
-#
-# Status Bar:
-#
+	# select area for the screen recording
+	bindsym --release g exec $screenrecorder -g \"$(slurp)"
+
+    # return to default mode
+    bindsym Backspace mode "default"
+}
+bindsym $mod+s mode "screencapture"
+
+
+
+##################
+### Status Bar ###
+##################
+
 # Read `man 5 sway-bar` for more information about this section.
 
-    bar {
-        swaybar_command waybar
-    }
+bar {
+    swaybar_command waybar
+}
+
+
+
+###################
+### Base Config ###
+###################
 
 include /etc/sway/config.d/*

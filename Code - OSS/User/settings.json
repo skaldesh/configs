@@ -9,7 +9,6 @@
     "window.menuBarVisibility": "compact",
     "window.zoomLevel": 2,
     "workbench.iconTheme": "simple-icons",
-    "workbench.colorTheme": "Default Dark+",
     //"go.formatTool": "goimports",
     //"go.autocompleteUnimportedPackages": true,
     "go.toolsGopath": "/home/skaldesh/go",
@@ -87,4 +86,6 @@
     "zls.path": "/usr/local/bin/zls",
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "redhat.telemetry.enabled": false,
+    "go.diagnostic.vulncheck": "Imports",
+    "git.openRepositoryInParentFolders": "never",
 }

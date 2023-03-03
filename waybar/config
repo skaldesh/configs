@@ -18,7 +18,8 @@
 	},
 
 	"modules-center": [
-		"tray"
+		"tray",
+		"custom/recorder"
 	],
 
 	"tray": {
@@ -122,6 +123,14 @@
 			"",
 			""
 		]
+	},
+
+	 "custom/recorder": {
+		"format": "",
+		"return-type": "json",
+		"interval": 1,
+		"exec": "echo '{\"class\": \"recording\"}'",
+		"exec-if": "pgrep wf-recorder"
 	},
 
 	"clock": {
