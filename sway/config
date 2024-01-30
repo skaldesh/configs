@@ -29,7 +29,6 @@ exec_always {
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 
-
 #################
 ### Variables ###
 #################
@@ -164,8 +163,8 @@ output $dext scale 1
 input "type:keyboard" {
     repeat_delay 150
     repeat_rate 38
-    xkb_layout us,de
-    xkb_variant ,neo
+    xkb_layout de,de
+    xkb_variant neo,nodeadkeys
     xkb_options grp:ctrls_toggle
 }
 
@@ -354,6 +353,8 @@ mode "resize" {
 	bindsym $down  resize grow   height 10 px or 10 ppt
 	bindsym $left  resize shrink width  10 px or 10 ppt
 
+	bindsym f resize set width 1920 px height 1080 px
+
 	# return to default mode
 	bindsym Backspace mode "default"
 }
@@ -405,13 +406,13 @@ mode "screencapture" {
     bindsym c exec grim -g \"$(slurp)" - | wl-copy
 
 	# take a screenshot of the current display
-	bindsym --release v exec "grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') /home/skaldesh/pictures/screenshots/$(date +'%Y-%m-%d-%H%M%S.png')"
+    bindsym --release v exec "grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') /home/skaldesh/pictures/screenshots/$(date +'%Y-%m-%d-%H%M%S.png')"
 
 	# take screen recording of the current display
-	bindsym --release h exec $screenrecorder
+    bindsym --release h exec $screenrecorder
 
 	# select area for the screen recording
-	bindsym --release g exec $screenrecorder -g \"$(slurp)"
+    bindsym --release g exec $screenrecorder -g \"$(slurp)"
 
     # return to default mode
     bindsym Backspace mode "default"

@@ -124,5 +124,58 @@
     {
         "key": "shift+alt+p",
         "command": "editor.action.fontZoomOut"
+    },
+    {
+        "key": "ctrl+k ctrl+shift+l",
+        "command": "extension.insertLicenseHeader",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+meta+i",
+        "command": "-extension.insertLicenseHeader",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+k ctrl+k",
+        "command": "-editor.action.selectFromAnchorToCursor",
+        "when": "editorTextFocus && selectionAnchorSet"
+    },
+    {
+        "key": "ctrl+k ctrl+k",
+        "command": "-editor.action.defineKeybinding",
+        "when": "resource == 'vscode-userdata:/home/skaldesh/.config/Code%20-%20OSS/User/keybindings.json'"
+    },
+    {
+        "key": "ctrl+k ctrl+k",
+        "command": "workbench.action.openGlobalKeybindings"
+    },
+    {
+        "key": "ctrl+k ctrl+s",
+        "command": "-workbench.action.openGlobalKeybindings"
+    },
+    {
+        "key": "ctrl+k ctrl+s",
+        "command": "workbench.action.splitEditor"
+    },
+    {
+        "key": "ctrl+\\",
+        "command": "-workbench.action.splitEditor"
+    },
+    {
+        "key": "ctrl+k ctrl+n",
+        "command": "-git.unstageSelectedRanges",
+        "when": "isInDiffEditor && !operationInProgress"
+    },
+    {
+        "key": "ctrl+alt+meta+n",
+        "command": "-welcome.showNewFileEntries"
+    },
+    {
+        "key": "ctrl+k ctrl+n",
+        "command": "editor.action.transformToSnakecase"
+    },
+    {
+        "key": "ctrl+t ctrl+u",
+        "command": "editor.action.transformToCamelcase"
     }
 ]
